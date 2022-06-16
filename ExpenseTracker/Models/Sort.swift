@@ -32,7 +32,7 @@ struct ExpenseLogSort {
     var sortOrder: SortOrder
     
     var isAscending: Bool {
-        sortOrder == .ascending ? true : false
+        sortOrder == .ascending
     }
     
     var sortDescriptor: NSSortDescriptor {

@@ -12,7 +12,7 @@ import CoreData
 struct LogsTabView: View {
     
     @Environment(\.managedObjectContext)
-        var context: NSManagedObjectContext
+    var context: NSManagedObjectContext
     
     @State private var searchText : String = ""
     @State private var searchBarHeight: CGFloat = 0
@@ -51,6 +51,9 @@ struct LogsTabView: View {
 
 struct LogsTabView_Previews: PreviewProvider {
     static var previews: some View {
+        let coreDataStack = CoreDataStack(containerName: "ExpenseTracker")
+
         LogsTabView()
+                .environment(\.managedObjectContext, coreDataStack.viewContext)
     }
 }

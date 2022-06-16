@@ -72,6 +72,11 @@ struct DashboardTabView: View {
             })
         }
     }
+    
+    func convert(to currency: Currency) {
+        
+    }
+    
 }
 
 
@@ -85,6 +90,10 @@ struct CategorySum: Identifiable, Equatable {
 
 struct DashboardTabView_Previews: PreviewProvider {
     static var previews: some View {
+        
+        let coreDataStack = CoreDataStack(containerName: "ExpenseTracker")
+
         DashboardTabView()
+                .environment(\.managedObjectContext, coreDataStack.viewContext)
     }
 }

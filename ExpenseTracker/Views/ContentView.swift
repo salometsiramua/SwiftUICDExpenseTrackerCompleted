@@ -19,6 +19,15 @@ struct ContentView: View {
                     }
             }
             .tag(0)
+
+            LogsTabView()
+                .tabItem {
+                    VStack {
+                        Text("Summary")
+                        Image(systemName: "tray")
+                    }
+            }
+            .tag(1)
             
             LogsTabView()
                 .tabItem {
@@ -27,13 +36,17 @@ struct ContentView: View {
                         Image(systemName: "tray")
                     }
             }
-            .tag(1)
+            .tag(2)
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
+       
+        let coreDataStack = CoreDataStack(containerName: "ExpenseTracker")
+
         ContentView()
+                .environment(\.managedObjectContext, coreDataStack.viewContext)
     }
 }
