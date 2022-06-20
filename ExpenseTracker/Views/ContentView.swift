@@ -11,11 +11,11 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            DashboardTabView()
+            DashboardTabView(currency: .usd)
                 .tabItem {
                     VStack {
-                        Text("Dashboard")
-                        Image(systemName: "chart.pie")
+                        Text(Strings.Main.dashboard.rawValue)
+                        Image(systemName: Strings.Main.dashboardIconName.rawValue)
                     }
             }
             .tag(0)
@@ -23,21 +23,21 @@ struct ContentView: View {
             LogsTabView()
                 .tabItem {
                     VStack {
-                        Text("Summary")
-                        Image(systemName: "tray")
+                        Text(Strings.Main.logs.rawValue)
+                        Image(systemName: Strings.Main.logsIconName.rawValue)
                     }
             }
             .tag(1)
             
-            LogsTabView()
+            SummaryTabView()
                 .tabItem {
                     VStack {
-                        Text("Logs")
-                        Image(systemName: "tray")
+                        Text(Strings.Main.summary.rawValue)
+                        Image(systemName: Strings.Main.summaryIconName.rawValue)
                     }
             }
             .tag(2)
-        }
+        }.accentColor(Colors.selectedTab)
     }
 }
 

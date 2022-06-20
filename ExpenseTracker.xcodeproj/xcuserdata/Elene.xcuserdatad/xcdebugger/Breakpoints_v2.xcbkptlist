@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "DD35BE6E-B5A5-4A65-95D1-0FDAD99BFB2F"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A6622671-5F4D-4EF7-9F23-E89429FBC091"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ExpenseTracker/Views/Dashboard/DashboardTabView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "convert(to:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A6622671-5F4D-4EF7-9F23-E89429FBC091 - 874a1baf00bad284"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ExpenseTracker.DashboardTabView.convert(to: ExpenseTracker.Currency) -&gt; ()"
+                  moduleName = "ExpenseTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Elene/SwiftUICDExpenseTrackerCompleted/ExpenseTracker/Views/Dashboard/DashboardTabView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "110">
+               </Location>
+               <Location
+                  uuid = "A6622671-5F4D-4EF7-9F23-E89429FBC091 - fa452b19b9dfc057"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;ExpenseTracker.CurrencyResponse&gt;) -&gt; () in ExpenseTracker.DashboardTabView.convert(to: ExpenseTracker.Currency) -&gt; ()"
+                  moduleName = "ExpenseTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Elene/SwiftUICDExpenseTrackerCompleted/ExpenseTracker/Views/Dashboard/DashboardTabView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "113">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -24,7 +24,11 @@ extension ExpenseLog {
     }
     
     var amountText: String {
-        Utils.numberFormatter.string(from: NSNumber(value: amount?.doubleValue ?? 0)) ?? ""
+        Utils.numberFormatter(for: .usd).string(from: NSNumber(value: amount?.doubleValue ?? 0)) ?? ""
+    }
+    
+    var noteText: String {
+        note ?? ""
     }
     
     static func fetchAllCategoriesTotalAmountSum(context: NSManagedObjectContext, completion: @escaping ([(sum: Double, category: Category)]) -> ()) {
@@ -74,6 +78,37 @@ extension ExpenseLog {
         
         if !searchText.isEmpty {
             predicates.append(NSPredicate(format: "name CONTAINS[cd] %@", searchText.lowercased()))
+        }
+        
+        if predicates.isEmpty {
+            return nil
+        } else {
+            return NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        }
+    }
+    
+    static func predicate(with months: Set<Month>) -> NSPredicate? {
+        var predicates = [NSPredicate]()
+        
+
+        if !months.isEmpty {
+           
+            for month in months {
+                 
+                let selectedMonth = month.index
+                let selectedYear = Calendar.current.component(.year, from: Date())
+                var components = DateComponents()
+                components.month = selectedMonth
+                components.year = selectedYear
+                let startDateOfMonth = Calendar.current.date(from: components)
+
+                components.month = (selectedMonth + 1) % 12
+
+                let endDateOfMonth = Calendar.current.date(from: components)
+                
+                let predicate = NSPredicate(format: "%K >= %@ && %K <= %@", "date", startDateOfMonth! as NSDate, "date", endDateOfMonth! as NSDate)
+                predicates.append(predicate)
+            }
         }
         
         if predicates.isEmpty {

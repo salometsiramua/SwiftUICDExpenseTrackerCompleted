@@ -37,24 +37,21 @@ struct LogListView: View {
     var body: some View {
         List {
             ForEach(result) { (log: ExpenseLog) in
-                Button(action: {
-                    self.logToEdit = log
-                }) {
-                    HStack(spacing: 16) {
-                        CategoryImageView(category: log.categoryEnum)
-
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(log.nameText).font(.headline)
-                            Text(log.dateText).font(.subheadline)
-                        }
-                        Spacer()
-                        Text(log.amountText).font(.headline)
+                HStack(spacing: 16) {
+                    CategoryImageView(category: log.categoryEnum)
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(log.nameText).font(.headline)
+                        Text(log.dateText).font(.subheadline)
                     }
-                    .padding(.vertical, 4)
+                    Spacer()
+                    Text(log.amountText).font(.headline)
                 }
-                
+                .padding(.vertical, 4).onTapGesture {
+                    self.logToEdit = log
+                }
             }
-               
+            
             .onDelete(perform: onDelete)
             .sheet(item: $logToEdit, onDismiss: {
                 self.logToEdit = nil
@@ -63,9 +60,10 @@ struct LogListView: View {
                     logToEdit: log,
                     context: self.context,
                     name: log.name ?? "",
-                    amount: log.amount?.doubleValue ?? 0,
+                    amount: log.amount?.description ?? "",
                     category: Category(rawValue: log.category ?? "") ?? .food,
-                    date: log.date ?? Date()
+                    date: log.date ?? Date(),
+                    note: log.note ?? ""
                 )
             }
         }

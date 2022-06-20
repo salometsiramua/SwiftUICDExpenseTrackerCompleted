@@ -16,11 +16,12 @@ struct Utils {
         return formatter
     }()
     
-    static let numberFormatter: NumberFormatter = {
+    static func numberFormatter(for currency: Currency) -> NumberFormatter {
         let formatter = NumberFormatter()
         formatter.isLenient = true
+        formatter.currencyCode = currency.identifier
         formatter.numberStyle = .currency
         return formatter
-    }()
+    }
     
 }

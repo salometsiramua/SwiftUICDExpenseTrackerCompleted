@@ -18,7 +18,6 @@ struct SearchBar: UIViewRepresentable {
         
         @Binding var text : String
         @Binding var searchBarHeight: CGFloat
-
         
         init(text : Binding<String>, searchBarHeight: Binding<CGFloat>) {
             _text = text

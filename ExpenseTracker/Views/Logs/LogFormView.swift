@@ -8,6 +8,7 @@
 
 import SwiftUI
 import CoreData
+import Combine
 
 struct LogFormView: View {
     
@@ -15,9 +16,11 @@ struct LogFormView: View {
     var context: NSManagedObjectContext
     
     @State var name: String = ""
-    @State var amount: Double = 0
+    @State var amount: String = ""
     @State var category: Category = .utilities
     @State var date: Date = Date()
+    @State var note: String = ""
+    @State var currency: Currency = .usd
     
     @Environment(\.presentationMode)
     var presentationMode
@@ -26,15 +29,23 @@ struct LogFormView: View {
         logToEdit == nil ? "Create Expense Log" : "Edit Expense Log"
     }
     
-    
     var body: some View {
         NavigationView {
             Form {
                 TextField("Name", text: $name)
                     .disableAutocorrection(true)
-                TextField("Amount", value: $amount, formatter: Utils.numberFormatter)
+                
+                TextField("Amount", text: $amount)
                     .keyboardType(.numbersAndPunctuation)
-                    
+                    .onReceive(Just(amount)) { newValue in
+                        let filtered = newValue.filter { "0123456789".contains($0) }
+                        if filtered != newValue {
+                            self.amount = filtered
+                        }
+                    }
+                
+                TextField("Note", text: $note) .disableAutocorrection(true)
+                
                 Picker(selection: $category, label: Text("Category")) {
                     ForEach(Category.allCases) { category in
                         Text(category.rawValue.capitalized).tag(category)
@@ -44,7 +55,7 @@ struct LogFormView: View {
                     Text("Date")
                 }
             }
-
+            
             .navigationBarItems(
                 leading: Button(action: self.onCancelTapped) { Text("Cancel")},
                 trailing: Button(action: self.onSaveTapped) { Text("Save")}
@@ -71,8 +82,9 @@ struct LogFormView: View {
         
         log.name = self.name
         log.category = self.category.rawValue
-        log.amount = NSDecimalNumber(value: self.amount)
+        log.amount =  NSDecimalNumber(string: amount)
         log.date = self.date
+        log.note = self.note
         
         do {
             try context.save()

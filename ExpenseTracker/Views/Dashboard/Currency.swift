@@ -15,4 +15,17 @@ enum Currency: String {
     var identifier: String {
         rawValue.uppercased()
     }
+    
+    var symbol: String {
+        switch self {
+        case .eur:
+            return "€"
+        case .usd:
+            return "$"
+        }
+    }
+    
+    var alternate: Currency {
+        self == .eur ? .usd : .eur
+    }
 }

@@ -25,7 +25,7 @@ struct LogsTabView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                SearchBar(text: $searchText, keyboardHeight: $searchBarHeight, placeholder: "Search expenses")
+                SearchBar(text: $searchText, keyboardHeight: $searchBarHeight, placeholder: Strings.Logs.search.rawValue)
                 FilterCategoriesView(selectedCategories: $selectedCategories)
                 Divider()
                 SelectSortOrderView(sortType: $sortType, sortOrder: $sortOrder)
@@ -36,7 +36,7 @@ struct LogsTabView: View {
             .sheet(isPresented: $isAddFormPresented) {
                 LogFormView(context: self.context)
             }
-            .navigationBarItems(trailing: Button(action: addTapped) { Text("Add") })
+            .navigationBarItems(trailing: Button(action: addTapped) { Text(Strings.Logs.add.rawValue) })
             .navigationBarTitle("Expense Logs", displayMode: .inline)
         }
     }
@@ -44,9 +44,6 @@ struct LogsTabView: View {
     func addTapped() {
         isAddFormPresented = true
     }
-    
-    
-    
 }
 
 struct LogsTabView_Previews: PreviewProvider {

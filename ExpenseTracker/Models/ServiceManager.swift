@@ -10,18 +10,18 @@ import Foundation
 import Alamofire
 
 class ServiceManager {
+    let endPoint = "https://elementsofdesign.api.stdlib.com/aavia-currency-converter@dev/"
     
-    func fetchRate() {
+    func fetchRate(for amount: Double = 0, from: Currency, to: Currency, completion: @escaping (Result<CurrencyResponse, AFError>)->()) {
        
-        let endpoint = "https://elementsofdesign.api.stdlib.com/aavia-currency-converter@dev/"
         let parameters: [String: Any] = [
-            "amount" : 102,
-            "to_currency" : "EUR",
-            "from_currency" : "USD"
+            CurrencyRequest.CodingKeys.amount.rawValue : amount,
+            CurrencyRequest.CodingKeys.toCurrency.rawValue : to.identifier,
+            CurrencyRequest.CodingKeys.fromCurrency.rawValue : from.identifier
         ]
         
-        AF.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: [:]).responseDecodable(of: CurrencyResponse.self) { response in
-            print(response)
+        AF.request(endPoint, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: [:]).responseDecodable(of: CurrencyResponse.self) { response in
+            completion(response.result)
         }
     }
 }
