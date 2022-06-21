@@ -9,7 +9,7 @@
 import UIKit
 
 enum Sizes: CGFloat {
-    case mediumSpacing = 10
+    case mediumSpacing = 16
     case pickerWidth = 100
     case chartWidth = 300
     case chartHeight = 240

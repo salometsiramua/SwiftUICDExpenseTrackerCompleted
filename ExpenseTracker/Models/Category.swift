@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-enum Category: String, CaseIterable {
+enum Category: String, CaseIterable, Filterable {
     
     case donation
     case food
@@ -44,6 +44,10 @@ enum Category: String, CaseIterable {
         case .utilities: return Color(#colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
         case .other: return Color(#colorLiteral(red: 0.5791940689, green: 0.1280144453, blue: 0.5726861358, alpha: 1))
         }
+    }
+    
+    var value: String {
+        rawValue
     }
 }
 

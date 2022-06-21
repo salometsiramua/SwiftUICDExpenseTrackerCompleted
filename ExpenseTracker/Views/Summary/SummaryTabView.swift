@@ -21,7 +21,7 @@ struct SummaryTabView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                FilterMonthsView(selectedMonths: $selectedMonths)
+                FilterView(selectedViews: $selectedMonths, filterableViews: Month.allCases)
                 Divider()
                 LogListView(predicate: ExpenseLog.predicate(with: selectedMonths), sortDescriptor: ExpenseLogSort(sortType: sortType, sortOrder: sortOrder).sortDescriptor)
             }

@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-enum Month: String, CaseIterable {
+enum Month: String, CaseIterable, Filterable {
     
     case january
     case february
@@ -43,6 +43,10 @@ enum Month: String, CaseIterable {
         case .november: return Color(#colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
         case .december: return Color(#colorLiteral(red: 0.5791940689, green: 0.1280144453, blue: 0.5726861358, alpha: 1))
         }
+    }
+    
+    var value: String {
+        rawValue
     }
 }
 

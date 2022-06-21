@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Currency: String {
+enum Currency: String, CaseIterable {
     case usd
     case eur
     
@@ -27,5 +27,9 @@ enum Currency: String {
     
     var alternate: Currency {
         self == .eur ? .usd : .eur
+    }
+    
+    var index: Int {
+        Currency.allCases.firstIndex(of: self) ?? 0
     }
 }
